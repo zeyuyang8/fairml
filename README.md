@@ -4,6 +4,14 @@
 
 This repository aims to provide a set of tools to help data scientists, machine learning engineers and researchers to build fair machine learning models.
 
+## Installation
+
+```bash
+conda create -n fairml python=3.9
+conda activate fairml
+pip install -r requirements.txt
+```
+
 ## Datasets
 
 - [Adult](https://archive.ics.uci.edu/ml/datasets/adult)

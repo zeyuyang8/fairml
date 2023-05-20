@@ -16,7 +16,6 @@ def get_mimic_3():
     Returns:
         X: features
         y: labels
-
     """
     pass
 
@@ -30,6 +29,18 @@ def get_adult_census():
     Returns:
         X: features
         y: labels
+    """
+    pass
 
+
+def get_depression():
+    """Load Intersectional bias assessment for depression from OpenML.
+
+    Args:
+        None
+
+    Returns:
+        X: features
+        y: labels
     """
     pass

@@ -14,8 +14,9 @@ pip install -r requirements.txt
 
 ## Datasets
 
-- [Adult](https://archive.ics.uci.edu/ml/datasets/adult)
-- [German Credit](https://archive.ics.uci.edu/ml/datasets/Statlog+%28German+Credit+Data%29)
+- MIMIC-3
+- Adult Census
+- Intersectional bias assessment for depression prediction
 
 ## Coding style
 

@@ -16,3 +16,7 @@ pip install -r requirements.txt
 
 - [Adult](https://archive.ics.uci.edu/ml/datasets/adult)
 - [German Credit](https://archive.ics.uci.edu/ml/datasets/Statlog+%28German+Credit+Data%29)
+
+## Coding style
+
+We use Goolge Python Style Guide. Please refer to [this link](https://google.github.io/styleguide/pyguide.html) for more details.

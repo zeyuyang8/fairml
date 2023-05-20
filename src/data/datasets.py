@@ -20,7 +20,7 @@ def get_mimic_3():
     pass
 
 
-def get_adult_census():
+def get_acs_income():
     """Load Adult Census dataset from Fairlearn.
 
     Args:

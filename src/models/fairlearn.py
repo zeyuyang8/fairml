@@ -29,15 +29,3 @@ class FairLearnMitigator:
             a mitigator
         """
         pass
-
-    def threshold_optimizer(clf, constraint):
-        """Threshold optimizer algorithm.
-
-        Args:
-            clf: a classifier
-            constraint: a constraint
-
-        Returns:
-            a mitigator
-        """
-        pass

@@ -12,46 +12,47 @@ def customized_classification_report(y_true, y_pred, output_dict=True):
         y_true (pd.Series): true labels
         y_pred (pd.Series): predicted labels
         output_dict (bool): whether to output dictionary
+
+    Returns:
+        classification_report (dict): classification report
     """
     return classification_report(y_true, y_pred, output_dict=output_dict)
 
 
-def eval_multi_clf_fairness(clf, features, labels, sensitive_features):
+def eval_multi_clf_fairness(y_true, y_pred, sensitive_features):
     """Evaluate fairness of the multi-class classifier.
 
     Args:
-        clf (sklearn.classifier): classifier
-        features (pd.Dataframe): features dataframe
-        labels (pd.Series): labels series
+        y_true (pd.Series): true labels
+        y_pred (pd.Series): predicted labels
         sensitive_features (pd.Series): sensitive features series
-        metrics (dict): dictionary of evaluation metrics
+
+    Returns:
+        metric_frame (fairlearn.metrics.MetricFrame): metric frame
     """
-    y_pred = clf.predict(features)
     metrics = {
         "accuracy": accuracy_score,
         "confusion matrix": confusion_matrix,
         "classication report": customized_classification_report
     }
     metric_frame = MetricFrame(metrics=metrics,
-                               y_true=labels,
+                               y_true=y_true,
                                y_pred=y_pred,
                                sensitive_features=sensitive_features)
     return metric_frame
 
 
-def eval_binary_clf_fairness(clf, features, labels, sensitive_features):
+def eval_binary_clf_fairness(y_true, y_pred, sensitive_features):
     """Evaluate fairness of the binary classifier.
 
     Args:
-        clf (sklearn.classifier): classifier
-        features (pd.Dataframe): features dataframe
-        labels (pd.Series): labels series
+        y_true (pd.Series): true labels
+        y_pred (pd.Series): predicted labels
         sensitive_features (pd.Series): sensitive features series
 
     Returns:
         metric_frame (fairlearn.metrics.MetricFrame): metric frame
     """
-    y_pred = clf.predict(features)
     metrics = {
         "accuracy": accuracy_score,
         "precision": precision_score,
@@ -66,7 +67,7 @@ def eval_binary_clf_fairness(clf, features, labels, sensitive_features):
         "true positive rate": true_positive_rate
     }
     metric_frame = MetricFrame(metrics=metrics,
-                               y_true=labels,
+                               y_true=y_true,
                                y_pred=y_pred,
                                sensitive_features=sensitive_features)
     return metric_frame

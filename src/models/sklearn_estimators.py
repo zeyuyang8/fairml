@@ -1,12 +1,18 @@
-from sklearn.tree import DecisionTreeClassifier
-
-
 class SklearnClfs:
     """Container for sklearn classifiers."""
-    def __init__(self):
-        self._clf_dict = {
-            "Decision tree classifier": DecisionTreeClassifier(max_depth=4),
-        }
+    def __init__(self, clf_dict):
+        """Initialize the container.
+
+        Args:
+            clf_dict (dict): Dictionary of classifiers.
+
+        Example:
+            from sklearn.tree import DecisionTreeClassifier
+            clf_dict = {
+                "Decision tree clf": DecisionTreeClassifier(max_depth=4),
+            }
+        """
+        self._clf_dict = clf_dict
 
     def add_clf(self, clf_name, clf):
         """Add a new classifier.

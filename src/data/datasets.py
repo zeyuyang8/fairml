@@ -1,46 +1,22 @@
-"""
-Helper functions for loading datasets.
-In this project, we are going to use three datasets:
-    - MIMIC-3 from the server in COMP-WELL lab
-    - Adult Census dataset from Fairlearn
-    - Intersectional bias assessment for depression from OpenML
-"""
+import pandas as pd
+from sklearn.datasets import fetch_openml
 
 
-def get_mimic_3():
-    """Load MIMIC-3 dataset from the server in COMP-WELL lab.
+def fetch_openml_dataset(choice):
+    """Load dataset according to the choice from OpenML.
 
     Args:
-        None
+        choice (str): dataset name
 
     Returns:
-        X: features
-        y: labels
+        X (pd.Dataframe): features
+        y_true (pd.Series): true labels
     """
-    pass
+    if choice == "ACSincome":
+        data = fetch_openml(data_id=43141, as_frame=True, parser='auto')
+    elif choice == "IBADepression":
+        data = fetch_openml(data_id=45040, as_frame=True, parser='auto')
 
-
-def get_acs_income():
-    """Load Adult Census dataset from Fairlearn.
-
-    Args:
-        None
-
-    Returns:
-        X: features
-        y: labels
-    """
-    pass
-
-
-def get_depression():
-    """Load Intersectional bias assessment for depression from OpenML.
-
-    Args:
-        None
-
-    Returns:
-        X: features
-        y: labels
-    """
-    pass
+    X = pd.get_dummies(data.data)
+    y_true = data.target
+    return {"features": X, "labels": y_true}

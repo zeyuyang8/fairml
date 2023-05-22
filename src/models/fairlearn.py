@@ -1,31 +1,40 @@
-class FairLearnMitigator:
-    """Fair learn mitigator container."""
-    def __init__(self):
-        """Initialize."""
-        self._clf = None
-        self._mitigator = None
+from fairlearn.reductions import ExponentiatedGradient
+# from fairlearn.postprocessing import ThresholdOptimizer
 
-    def exponentiated_gradient(clf, constraint):
-        """Exponentiated gradient algorithm.
 
-        Args:
-            clf: a classifier
-            constraint: a constraint
+class ExpGradMitigator:
+    def __init__(self, clf, constraint):
+        self._clf = clf
+        self._constraint = constraint
+        self._mitigators = ExponentiatedGradient(clf, constraint)
 
-        Returns:
-            a mitigator
-        """
-        pass
+    def fit_clf(self, X, y, **kwargs):
+        self._clf.fit(X, y, **kwargs)
 
-    def grid_search(clf, constraint, grid_size=10):
-        """Grid search algorithm.
+    def fit_mitigator(self, X, y, **kwargs):
+        self._mitigators.fit(X, y, **kwargs)
 
-        Args:
-            clf: a classifier
-            constraint: a constraint
-            grid_size: grid size
+    def mitigator_predict(self, X):
+        return self._mitigators.predict(X)
 
-        Returns:
-            a mitigator
-        """
-        pass
+    def clf_predict(self, X):
+        return self._clf.predict(X)
+
+
+# class ThresholdOptimizerMitigator:
+#     def __init__(self, clf, constraint):
+#         self._clf = clf
+#         self._constraint = constraint
+#         self._mitigators = ThresholdOptimizer(clf, constraint)
+
+#     def fit_clf(self, X, y, **kwargs):
+#         self._clf.fit(X, y, **kwargs)
+
+#     def fit_mitigator(self, X, y, **kwargs):
+#         self._mitigators.fit(X, y, **kwargs)
+
+#     def clf_predict(self, X):
+#         return self._clf.predict(X)
+
+#     def mitigator_predict(self, X):
+#         return self._mitigators.predict(X)

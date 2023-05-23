@@ -20,7 +20,7 @@ class SklearnClfs:
         """
         self._clf_dict = clf_dict
 
-    def add_clf(self, clf_name, clf):
+    def add_estimator(self, clf_name, clf):
         """Add a new classifier.
 
         Args:
@@ -29,7 +29,7 @@ class SklearnClfs:
         """
         self._clf_dict[clf_name] = clf
 
-    def get_clf(self, clf_name):
+    def get_estimator(self, clf_name):
         """Return the classifier by name.
 
         Args:
@@ -40,7 +40,7 @@ class SklearnClfs:
         """
         return self._clf_dict[clf_name]
 
-    def get_clf_all(self):
+    def get_estimator_all(self):
         """Return all the classifiers.
 
         Returns:
@@ -48,7 +48,7 @@ class SklearnClfs:
         """
         return self._clf_dict
 
-    def fit_clf(self, clf_name, X, y):
+    def fit_estimator(self, clf_name, X, y):
         """Fit the classifier by name.
 
         Args:
@@ -58,7 +58,7 @@ class SklearnClfs:
         """
         self._clf_dict[clf_name].fit(X, y)
 
-    def fit_clf_all(self, X, y):
+    def fit_estimator_all(self, X, y):
         """Fit all the classifiers.
 
         Args:

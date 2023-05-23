@@ -1,3 +1,9 @@
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.neural_network import MLPClassifier
+
+
 class SklearnClfs:
     """Container for sklearn classifiers."""
     def __init__(self, clf_dict):
@@ -84,3 +90,12 @@ class SklearnClfs:
             dict: Predicted labels.
         """
         return {clf_name: self.predict(clf_name, X) for clf_name in self._clf_dict}
+
+
+DEFAULT_SKLEARN_CLFS = {
+    "Logistic regression": LogisticRegression(max_iter=1000),
+    "Decistion tree classifier": DecisionTreeClassifier(max_depth=4),
+    "Random forest classifier": RandomForestClassifier(max_depth=4),
+    "AdaBoost classifier": AdaBoostClassifier(),
+    "Multi-layer perceptron classifier": MLPClassifier(max_iter=1000)
+}

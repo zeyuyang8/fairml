@@ -97,36 +97,29 @@ def plot_target_dist(target, xlabel, ylabel, title, save_path=None):
     return fig
 
 
-def plot_binary_fairness_metrics_by_group(metric_frame, xticks, title, save_path=None):
+def plot_binary_fairness_metrics_by_group(metric_frame, xticks, title, keys, save_path=None):
     """Plot binary fairness metrics by group.
 
     Args:
         metric_frame (fairlearn.metrics.MetricFrame): metric frame
         xticks (list): x-axis ticks
         title (str): title of the plot
+        keys (list): keys to plot
         save_path (str): path to save the plot
     """
     plt.figure(figsize=(18, 18))
     reindexed_metric_frame = metric_frame.by_group.copy()
     reindexed_metric_frame.index = xticks
     reindexed_metric_frame.index.name = metric_frame.by_group.index.name
-    reindexed_metric_frame[["accuracy",
-                            "precision",
-                            "count",
-                            "mean prediction",
-                            "selection rate",
-                            "false negative rate",
-                            "false positive rate",
-                            "true negative rate",
-                            "true positive rate"]
-                           ].plot(
-                               kind="bar",
-                               subplots=True,
-                               layout=[3, 3],
-                               legend=False,
-                               figsize=[12, 8],
-                               rot=45,
-                               position=0,
-                               title=title)
+    reindexed_metric_frame[keys].plot(
+        kind="bar",
+        subplots=True,
+        layout=[3, 3],
+        legend=False,
+        figsize=[12, 8],
+        rot=45,
+        position=0,
+        title=title
+    )
     if save_path:
         plt.savefig(save_path + title + ".png", bbox_inches='tight')

@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ## Datasets
 
 - MIMIC-3
-- Adult Census
+- Adult Census income
 - Intersectional bias assessment for depression prediction
 
 ## Coding style

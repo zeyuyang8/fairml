@@ -1,5 +1,6 @@
 import numpy as np
 from fairlearn.reductions import ExponentiatedGradient
+from fairlearn.postprocessing import ThresholdOptimizer
 
 
 class ExpGradMitigator:
@@ -86,3 +87,31 @@ class ExpGradMitigator:
         for mitigator_name in self._mitigator_dict:
             y_pred_dict[mitigator_name] = self.predict(mitigator_name, X)
         return y_pred_dict
+
+
+def get_threshold_optim(X, y, sensitive, estimator_dict,
+                        constraints='demographic_parity',
+                        objective='accuracy_score'):
+    """Get the threshold optimizer.
+
+    Args:
+        X (np.array): Features.
+        y (np.array): Labels.
+        sensitive (np.array): Sensitive features.
+        estimator_dict (dict): Estimator dictionary.
+        constraints (str): Fairness constraints.
+        objective (str): Objective function.
+
+    Returns:
+        dict: Post-processing estimator dictionary.
+    """
+    postprocess_est = {}
+    for mitigator_name in estimator_dict:
+        postprocess_est[mitigator_name] = ThresholdOptimizer(
+            estimator=estimator_dict[mitigator_name],
+            constraints=constraints,
+            objective=objective,
+            predict_method='auto'
+        )
+        postprocess_est[mitigator_name].fit(X, y, sensitive_features=sensitive)
+    return postprocess_est

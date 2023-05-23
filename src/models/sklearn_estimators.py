@@ -66,7 +66,7 @@ class SklearnClfs:
             y (np.array): Labels.
         """
         for clf_name in self._clf_dict:
-            self.fit_clf(clf_name, X, y)
+            self.fit_estimator(clf_name, X, y)
 
     def predict(self, clf_name, X):
         """Predict the labels using the classifier by name.

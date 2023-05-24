@@ -6,30 +6,10 @@ from fairlearn.metrics import true_negative_rate, true_positive_rate
 
 
 def customized_classification_report(y_true, y_pred, output_dict=True):
-    """Customized classification report.
-
-    Args:
-        y_true (pd.Series): true labels
-        y_pred (pd.Series): predicted labels
-        output_dict (bool): whether to output dictionary
-
-    Returns:
-        classification_report (dict): classification report
-    """
     return classification_report(y_true, y_pred, output_dict=output_dict)
 
 
 def eval_multi_clf_fairness(y_true, y_pred, sensitive_features):
-    """Evaluate fairness of the multi-class classifier.
-
-    Args:
-        y_true (pd.Series): true labels
-        y_pred (pd.Series): predicted labels
-        sensitive_features (pd.Series): sensitive features series
-
-    Returns:
-        metric_frame (fairlearn.metrics.MetricFrame): metric frame
-    """
     metrics = {
         "accuracy": accuracy_score,
         "confusion matrix": confusion_matrix,
@@ -43,16 +23,6 @@ def eval_multi_clf_fairness(y_true, y_pred, sensitive_features):
 
 
 def eval_binary_clf_fairness(y_true, y_pred, sensitive_features):
-    """Evaluate fairness of the binary classifier.
-
-    Args:
-        y_true (pd.Series): true labels
-        y_pred (pd.Series): predicted labels
-        sensitive_features (pd.Series): sensitive features series
-
-    Returns:
-        metric_frame (fairlearn.metrics.MetricFrame): metric frame
-    """
     metrics = {
         "accuracy": accuracy_score,
         "precision": precision_score,

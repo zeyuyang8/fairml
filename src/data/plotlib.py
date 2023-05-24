@@ -2,8 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_val_counts(features, col_name, xlabel, ylabel, title, xmapping, save_path=None):
-    """Plot bar chart visualizing the value counts of a column in the dataframe.
+def plot_val_counts(features, col_name, xlabel, ylabel, title,
+                    xmapping, save_path=None):
+    """Plot bar chart visualizing the value counts of
+    a column in the dataframe.
 
     Args:
         features (pd.Dataframe): features dataframe
@@ -58,7 +60,8 @@ def plot_corr_heatmap(features, targets, title, save_path=None):
     ax.set_yticks(np.arange(len(cols)), labels=cols)
 
     # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
 
     # Loop over data dimensions and create text annotations.
     for i in range(len(cols)):
@@ -97,7 +100,8 @@ def plot_target_dist(target, xlabel, ylabel, title, save_path=None):
     return fig
 
 
-def plot_binary_fairness_metrics_by_group(metric_frame, xticks, title, keys, save_path=None):
+def plot_binary_fairness_metrics_by_group(metric_frame, xticks, title,
+                                          keys, save_path=None):
     """Plot binary fairness metrics by group.
 
     Args:
